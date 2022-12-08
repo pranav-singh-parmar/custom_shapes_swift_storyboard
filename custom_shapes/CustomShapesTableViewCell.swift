@@ -26,8 +26,18 @@ class CustomShapesTableViewCell: UITableViewCell {
 
     //MARK: - Custom Methods
     func setUpCustomShapeView(forShape shape: CustomShapes) {
-        let width: CGFloat = 240.0
-        let height: CGFloat = 160.0
+        let width: CGFloat
+        let height: CGFloat
+        
+        switch shape {
+        case .Rectangle:
+            width = 240
+            height = 160
+        default:
+            width = 160
+            height = 160
+        }
+        
 
         let deviceDimemsion = UIScreen.main.bounds.size
         
