@@ -41,6 +41,12 @@ class CustomShapeView: UIView {
             self.createCircle()
         case .Curve:
             self.curve()
+        case .TopSemiCircle:
+            self.topSemiCircle()
+        case .BottomSemiCircle:
+            self.bottomSemiCircle()
+        case .Angle:
+            self.angle()
         }
 
         // Specify the fill color and apply it to the path.
@@ -99,10 +105,47 @@ class CustomShapeView: UIView {
         bezierPath = UIBezierPath()
         bezierPath.move(to: CGPoint(x: 0, y: 0))
         bezierPath.addCurve(to: CGPoint(x: self.frame.size.width - 20, y: self.frame.size.height - 20),
-                        controlPoint1: CGPoint(x: self.frame.size.width - 50, y: self.frame.size.height),
-                        controlPoint2: CGPoint(x: self.frame.size.width + 50, y: self.frame.size.height / 2))
+                            controlPoint1: CGPoint(x: self.frame.size.width / 5, y: self.frame.size.height / 1.5),
+                            controlPoint2: CGPoint(x: self.frame.size.width, y: self.frame.size.height / 3))
         
         
         //bezierPath.addCurve(to: CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2),
+    }
+    
+    private func topSemiCircle() {
+        bezierPath = UIBezierPath(arcCenter: CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2),
+                                  radius: self.frame.size.height/2,
+                                  startAngle: CGFloat(0.0).toRadians(),
+                                  endAngle: CGFloat(180).toRadians(),
+                                  clockwise: false)
+        
+        bezierPath.close()
+    }
+    
+    private func bottomSemiCircle() {
+        bezierPath = UIBezierPath(arcCenter: CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2),
+                                  radius: self.frame.size.height/2,
+                                  startAngle: CGFloat(0.0).toRadians(),
+                                  endAngle: CGFloat(180).toRadians(),
+                                  clockwise: true)
+        
+        bezierPath.close()
+    }
+    
+    private func angle() {
+        bezierPath = UIBezierPath(arcCenter: CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2),
+                                  radius: self.frame.size.height/2,
+                                  startAngle: CGFloat(0.0).toRadians(),
+                                  endAngle: CGFloat(225).toRadians(),
+                                  clockwise: false)
+        
+        bezierPath.addLine(to: CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2))
+        bezierPath.close()
+    }
+}
+
+extension CGFloat {
+    func toRadians() -> CGFloat {
+        return self * CGFloat(Double.pi) / 180.0
     }
 }

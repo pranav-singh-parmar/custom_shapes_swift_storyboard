@@ -9,9 +9,10 @@ import UIKit
 
 //https://www.appcoda.com/bezier-paths-introduction/
 //https://medium.com/orion-innovation-turkey/uibezierpath-is-a-class-that-allows-us-to-make-vector-drawings-with-swift-e9bc3cb41ad9
+//https://stackoverflow.com/questions/57448505/uibezierpath-star-with-rounded-corners
 
 enum CustomShapes: Int {
-    case Rectangle = 0, Triangle, Circle, Curve
+    case Rectangle = 0, Triangle, Circle, Curve, TopSemiCircle, BottomSemiCircle, Angle
 }
 
 class ViewController: UIViewController {
@@ -31,7 +32,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
